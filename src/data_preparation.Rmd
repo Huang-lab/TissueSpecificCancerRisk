@@ -1,0 +1,59 @@
+---
+title: "Data Preparation for Sitka Tree"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: show
+---
+# **Library**
+```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library(tidyverse)
+#install.packages("dplyr")
+library(dplyr)
+# install.packages("readr")
+library(readr)
+#install.packages("gt")
+library(gt)
+# install.packages("vroom")
+library(vroom)
+#install.packages("openxlsx")
+library(openxlsx)
+#install.packages("ape")
+library(ape)
+#install.packages("ggtree")
+library(ggtree)
+#install.packages("ggplot2")
+library(ggplot2)
+library(here)
+```
+## *TNBC: APE Visualization*
+```{r}
+#read the Newick file
+
+#read in data frame
+tnbc.cnv <- vroom(here("data","tnbc.cnv.csv"))
+```
+
+```{r}
+
+#filter
+sa501 <- tnbc.cnv %>% filter(Sample_Name == "SA501")
+
+write.csv(x = sa501,
+          file = here("data", "SA501.tbnc.cnv.csv"),
+          quote = FALSE,
+          row.names = TRUE)
+
+```
+```{r}
+sa501 <- vroom(here("data","SA501.tbnc.cnv.csv"))
+```
+
+```{r}
+glimpse(sa501)
+# cnv.hgsc <- read.csv(here("data", "hgsc.cnv.csv"))
+
+```
